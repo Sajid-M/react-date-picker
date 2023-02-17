@@ -158,6 +158,7 @@ export default class DatePicker extends PureComponent {
       minDate,
       monthAriaLabel,
       monthPlaceholder,
+      onInvalidEntry,
       name,
       nativeInputAriaLabel,
       required,
@@ -205,6 +206,7 @@ export default class DatePicker extends PureComponent {
           returnValue={returnValue}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
+          onInvalidEntry={onInvalidEntry}
         />
         {clearIcon !== null && (
           <button
@@ -389,4 +391,5 @@ DatePicker.propTypes = {
   value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
+  onInvalidEntry: PropTypes.func,
 };

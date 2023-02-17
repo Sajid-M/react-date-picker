@@ -442,7 +442,7 @@ export default class DateInput extends PureComponent {
    * calls props.onChange.
    */
   onChangeExternal = () => {
-    const { onChange } = this.props;
+    const { onChange, onInvalidEntry } = this.props;
 
     if (!onChange) {
       return;
@@ -474,6 +474,8 @@ export default class DateInput extends PureComponent {
 
       const processedValue = this.getProcessedValue(proposedValue);
       onChange(processedValue, false);
+    } else if (onInvalidEntry) {
+      onInvalidEntry();
     }
   };
 
@@ -645,4 +647,5 @@ DateInput.propTypes = {
   value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
+  onInvalidEntry: PropTypes.func,
 };
