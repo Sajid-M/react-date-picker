@@ -2,7 +2,7 @@ import React, { createRef, PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import makeEventProps from 'make-event-props';
-import mergeClassNames from 'merge-class-names';
+import clsx from 'clsx';
 import Calendar from 'react-calendar';
 import Fit from 'react-fit';
 
@@ -83,11 +83,7 @@ export default class DatePicker extends PureComponent {
   };
 
   onFocus = (event) => {
-    const { disabled, onFocus, openCalendarOnFocus } = this.props;
-
-    if (onFocus) {
-      onFocus(event);
-    }
+    const { disabled, openCalendarOnFocus } = this.props;
 
     // Internet Explorer still fires onFocus on disabled elements
     if (disabled) {
@@ -158,7 +154,6 @@ export default class DatePicker extends PureComponent {
       minDate,
       monthAriaLabel,
       monthPlaceholder,
-      onInvalidEntry,
       name,
       nativeInputAriaLabel,
       required,
@@ -206,7 +201,6 @@ export default class DatePicker extends PureComponent {
           returnValue={returnValue}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
-          onInvalidEntry={onInvalidEntry}
         />
         {clearIcon !== null && (
           <button
@@ -255,7 +249,7 @@ export default class DatePicker extends PureComponent {
     } = this.props;
 
     const className = `${baseClassName}__calendar`;
-    const classNames = mergeClassNames(className, `${className}--${isOpen ? 'open' : 'closed'}`);
+    const classNames = clsx(className, `${className}--${isOpen ? 'open' : 'closed'}`);
 
     const calendar = (
       <Calendar
@@ -291,20 +285,22 @@ export default class DatePicker extends PureComponent {
 
   render() {
     const { eventProps } = this;
-    const { className, disabled } = this.props;
+    const { className, 'data-testid': dataTestid, disabled } = this.props;
     const { isOpen } = this.state;
 
     const { onChange, ...eventPropsWithoutOnChange } = eventProps;
 
     return (
       <div
-        className={mergeClassNames(
+        className={clsx(
           baseClassName,
           `${baseClassName}--${isOpen ? 'open' : 'closed'}`,
           `${baseClassName}--${disabled ? 'disabled' : 'enabled'}`,
           className,
         )}
+        data-testid={dataTestid}
         {...eventPropsWithoutOnChange}
+        onFocus={this.onFocus}
         ref={this.wrapper}
       >
         {this.renderInputs()}
@@ -364,6 +360,7 @@ DatePicker.propTypes = {
   clearAriaLabel: PropTypes.string,
   clearIcon: PropTypes.node,
   closeCalendar: PropTypes.bool,
+  'data-testid': PropTypes.string,
   dayAriaLabel: PropTypes.string,
   dayPlaceholder: PropTypes.string,
   disableCalendar: PropTypes.bool,
@@ -390,5 +387,4 @@ DatePicker.propTypes = {
   value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
-  onInvalidEntry: PropTypes.func,
 };
