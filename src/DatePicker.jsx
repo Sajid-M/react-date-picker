@@ -167,6 +167,7 @@ export default class DatePicker extends PureComponent {
       yearAriaLabel,
       yearPlaceholder,
       onFocus,
+      onInvalidEntry,
     } = this.props;
     const { isOpen } = this.state;
 
@@ -207,6 +208,7 @@ export default class DatePicker extends PureComponent {
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
           onFocus={onFocus}
+          onInvalidEntry={onInvalidEntry}
         />
         {clearIcon !== null && (
           <button
@@ -291,7 +293,7 @@ export default class DatePicker extends PureComponent {
 
   render() {
     const { eventProps } = this;
-    const { className, 'data-testid': dataTestid, disabled, onFocus } = this.props;
+    const { className, 'data-testid': dataTestid, disabled } = this.props;
     const { isOpen } = this.state;
 
     const { onChange, ...eventPropsWithoutOnChange } = eventProps;
@@ -393,4 +395,5 @@ DatePicker.propTypes = {
   value: PropTypes.oneOfType([isValue, PropTypes.arrayOf(isValue)]),
   yearAriaLabel: PropTypes.string,
   yearPlaceholder: PropTypes.string,
+  onInvalidEntry: PropTypes.func,
 };
