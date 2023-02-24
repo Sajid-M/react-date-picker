@@ -15,7 +15,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _makeEventProps = _interopRequireDefault(require("make-event-props"));
 
-var _mergeClassNames = _interopRequireDefault(require("merge-class-names"));
+var _clsx = _interopRequireDefault(require("clsx"));
 
 var _reactCalendar = _interopRequireDefault(require("react-calendar"));
 
@@ -255,7 +255,6 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
           minDate = _this$props3.minDate,
           monthAriaLabel = _this$props3.monthAriaLabel,
           monthPlaceholder = _this$props3.monthPlaceholder,
-          onInvalidEntry = _this$props3.onInvalidEntry,
           name = _this$props3.name,
           nativeInputAriaLabel = _this$props3.nativeInputAriaLabel,
           required = _this$props3.required,
@@ -263,7 +262,8 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
           showLeadingZeros = _this$props3.showLeadingZeros,
           value = _this$props3.value,
           yearAriaLabel = _this$props3.yearAriaLabel,
-          yearPlaceholder = _this$props3.yearPlaceholder;
+          yearPlaceholder = _this$props3.yearPlaceholder,
+          onFocus = _this$props3.onFocus;
       var isOpen = this.state.isOpen;
 
       var _concat = [].concat(value),
@@ -300,7 +300,7 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
         returnValue: returnValue,
         showLeadingZeros: showLeadingZeros,
         value: valueFrom,
-        onInvalidEntry: onInvalidEntry
+        onFocus: onFocus
       })), clearIcon !== null && /*#__PURE__*/_react["default"].createElement("button", {
         "aria-label": clearAriaLabel,
         className: "".concat(baseClassName, "__clear-button ").concat(baseClassName, "__button"),
@@ -339,7 +339,7 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
           calendarProps = _objectWithoutProperties(_this$props4, _excluded);
 
       var className = "".concat(baseClassName, "__calendar");
-      var classNames = (0, _mergeClassNames["default"])(className, "".concat(className, "--").concat(isOpen ? 'open' : 'closed'));
+      var classNames = (0, _clsx["default"])(className, "".concat(className, "--").concat(isOpen ? 'open' : 'closed'));
 
       var calendar = /*#__PURE__*/_react["default"].createElement(_reactCalendar["default"], _extends({
         className: calendarClassName,
@@ -367,6 +367,7 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
       var eventProps = this.eventProps;
       var _this$props5 = this.props,
           className = _this$props5.className,
+          dataTestid = _this$props5['data-testid'],
           disabled = _this$props5.disabled;
       var isOpen = this.state.isOpen;
 
@@ -374,7 +375,8 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
           eventPropsWithoutOnChange = _objectWithoutProperties(eventProps, _excluded2);
 
       return /*#__PURE__*/_react["default"].createElement("div", _extends({
-        className: (0, _mergeClassNames["default"])(baseClassName, "".concat(baseClassName, "--").concat(isOpen ? 'open' : 'closed'), "".concat(baseClassName, "--").concat(disabled ? 'disabled' : 'enabled'), className)
+        className: (0, _clsx["default"])(baseClassName, "".concat(baseClassName, "--").concat(isOpen ? 'open' : 'closed'), "".concat(baseClassName, "--").concat(disabled ? 'disabled' : 'enabled'), className),
+        "data-testid": dataTestid
       }, eventPropsWithoutOnChange, {
         onFocus: this.onFocus,
         ref: this.wrapper
@@ -461,6 +463,7 @@ DatePicker.propTypes = {
   clearAriaLabel: _propTypes["default"].string,
   clearIcon: _propTypes["default"].node,
   closeCalendar: _propTypes["default"].bool,
+  'data-testid': _propTypes["default"].string,
   dayAriaLabel: _propTypes["default"].string,
   dayPlaceholder: _propTypes["default"].string,
   disableCalendar: _propTypes["default"].bool,
@@ -486,6 +489,5 @@ DatePicker.propTypes = {
   showLeadingZeros: _propTypes["default"].bool,
   value: _propTypes["default"].oneOfType([isValue, _propTypes["default"].arrayOf(isValue)]),
   yearAriaLabel: _propTypes["default"].string,
-  yearPlaceholder: _propTypes["default"].string,
-  onInvalidEntry: _propTypes["default"].func
+  yearPlaceholder: _propTypes["default"].string
 };

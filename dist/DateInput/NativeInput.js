@@ -24,7 +24,8 @@ function NativeInput(_ref) {
       onChange = _ref.onChange,
       required = _ref.required,
       value = _ref.value,
-      valueType = _ref.valueType;
+      valueType = _ref.valueType,
+      _onFocus = _ref.onFocus;
 
   var nativeInputType = function () {
     switch (valueType) {
@@ -59,11 +60,10 @@ function NativeInput(_ref) {
       default:
         throw new Error('Invalid valueType.');
     }
-  }();
+  }(); // function stopPropagation(event) {
+  //   event.stopPropagation();
+  // }
 
-  function stopPropagation(event) {
-    event.stopPropagation();
-  }
 
   return /*#__PURE__*/_react["default"].createElement("input", {
     "aria-label": ariaLabel,
@@ -72,7 +72,13 @@ function NativeInput(_ref) {
     min: minDate ? nativeValueParser(minDate) : null,
     name: name,
     onChange: onChange,
-    onFocus: stopPropagation,
+    onFocus: function onFocus(event) {
+      event.stopPropagation();
+
+      if (_onFocus) {
+        _onFocus(value ? nativeValueParser(value) : '');
+      }
+    },
     required: required,
     style: {
       visibility: 'hidden',
@@ -93,5 +99,6 @@ NativeInput.propTypes = {
   onChange: _propTypes["default"].func,
   required: _propTypes["default"].bool,
   value: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].instanceOf(Date)]),
-  valueType: _propTypes2.isValueType
+  valueType: _propTypes2.isValueType,
+  onFocus: _propTypes["default"].func
 };
