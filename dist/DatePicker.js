@@ -299,8 +299,7 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
         required: required,
         returnValue: returnValue,
         showLeadingZeros: showLeadingZeros,
-        value: valueFrom,
-        onFocus: onFocus
+        value: valueFrom
       })), clearIcon !== null && /*#__PURE__*/_react["default"].createElement("button", {
         "aria-label": clearAriaLabel,
         className: "".concat(baseClassName, "__clear-button ").concat(baseClassName, "__button"),
