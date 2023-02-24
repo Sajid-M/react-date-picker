@@ -443,6 +443,7 @@ export default class DateInput extends PureComponent {
    */
   onChangeExternal = () => {
     const { onChange, onInvalidEntry } = this.props;
+    console.log('on-invalid-entry', onInvalidEntry);
 
     if (!onChange) {
       return;
@@ -460,10 +461,12 @@ export default class DateInput extends PureComponent {
     });
 
     if (formElements.every((formElement) => !formElement.value)) {
+      console.log('on-invalid-entry forms-every');
       onChange(null, false);
     } else if (
       formElements.every((formElement) => formElement.value && formElement.validity.valid)
     ) {
+      console.log('on-invalid-entry forms-every-else-if');
       const year = parseInt(values.year, 10) || new Date().getFullYear();
       const monthIndex = parseInt(values.month || 1, 10) - 1;
       const day = parseInt(values.day || 1, 10);
@@ -475,6 +478,7 @@ export default class DateInput extends PureComponent {
       const processedValue = this.getProcessedValue(proposedValue);
       onChange(processedValue, false);
     } else if (onInvalidEntry) {
+      console.log('on-invalid-entry forms-every-oninvalid');
       onInvalidEntry();
     }
   };
