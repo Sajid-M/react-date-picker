@@ -206,7 +206,6 @@ export default class DatePicker extends PureComponent {
           returnValue={returnValue}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
-          onFocus={onFocus}
         />
         {clearIcon !== null && (
           <button
