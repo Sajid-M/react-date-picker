@@ -306,7 +306,7 @@ export default class DatePicker extends PureComponent {
         )}
         data-testid={dataTestid}
         {...eventPropsWithoutOnChange}
-        onFocus={onFocus}
+        onFocus={this.onFocus}
         ref={this.wrapper}
       >
         {this.renderInputs()}
