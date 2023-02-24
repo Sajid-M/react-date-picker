@@ -588,8 +588,16 @@ export default class DateInput extends PureComponent {
   }
 
   renderNativeInput() {
-    const { disabled, maxDate, minDate, name, nativeInputAriaLabel, required, onFocus } =
-      this.props;
+    const {
+      disabled,
+      maxDate,
+      minDate,
+      name,
+      nativeInputAriaLabel,
+      required,
+      onFocus,
+      onInvalidEntry,
+    } = this.props;
     const { value } = this.state;
 
     return (
@@ -605,6 +613,7 @@ export default class DateInput extends PureComponent {
         value={value}
         valueType={this.valueType}
         onFocus={onFocus}
+        onInvalidEntry={onInvalidEntry}
       />
     );
   }
