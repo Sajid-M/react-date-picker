@@ -263,7 +263,8 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
           value = _this$props3.value,
           yearAriaLabel = _this$props3.yearAriaLabel,
           yearPlaceholder = _this$props3.yearPlaceholder,
-          onFocus = _this$props3.onFocus;
+          onFocus = _this$props3.onFocus,
+          onInvalidEntry = _this$props3.onInvalidEntry;
       var isOpen = this.state.isOpen;
 
       var _concat = [].concat(value),
@@ -300,7 +301,8 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
         returnValue: returnValue,
         showLeadingZeros: showLeadingZeros,
         value: valueFrom,
-        onFocus: onFocus
+        onFocus: onFocus,
+        onInvalidEntry: onInvalidEntry
       })), clearIcon !== null && /*#__PURE__*/_react["default"].createElement("button", {
         "aria-label": clearAriaLabel,
         className: "".concat(baseClassName, "__clear-button ").concat(baseClassName, "__button"),
@@ -368,8 +370,7 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
       var _this$props5 = this.props,
           className = _this$props5.className,
           dataTestid = _this$props5['data-testid'],
-          disabled = _this$props5.disabled,
-          onFocus = _this$props5.onFocus;
+          disabled = _this$props5.disabled;
       var isOpen = this.state.isOpen;
 
       var onChange = eventProps.onChange,
@@ -490,5 +491,6 @@ DatePicker.propTypes = {
   showLeadingZeros: _propTypes["default"].bool,
   value: _propTypes["default"].oneOfType([isValue, _propTypes["default"].arrayOf(isValue)]),
   yearAriaLabel: _propTypes["default"].string,
-  yearPlaceholder: _propTypes["default"].string
+  yearPlaceholder: _propTypes["default"].string,
+  onInvalidEntry: _propTypes["default"].func
 };

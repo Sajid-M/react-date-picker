@@ -638,7 +638,8 @@ var DateInput = /*#__PURE__*/function (_PureComponent) {
           minDate = _this$props8.minDate,
           name = _this$props8.name,
           nativeInputAriaLabel = _this$props8.nativeInputAriaLabel,
-          required = _this$props8.required;
+          required = _this$props8.required,
+          onFocus = _this$props8.onFocus;
       var value = this.state.value;
       return /*#__PURE__*/_react["default"].createElement(_NativeInput["default"], {
         key: "date",
@@ -650,8 +651,8 @@ var DateInput = /*#__PURE__*/function (_PureComponent) {
         onChange: this.onChangeNative,
         required: required,
         value: value,
-        valueType: this.valueType // onFocus={onFocus}
-
+        valueType: this.valueType,
+        onFocus: onFocus
       });
     }
   }, {
