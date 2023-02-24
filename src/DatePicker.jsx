@@ -291,7 +291,7 @@ export default class DatePicker extends PureComponent {
 
   render() {
     const { eventProps } = this;
-    const { className, 'data-testid': dataTestid, disabled } = this.props;
+    const { className, 'data-testid': dataTestid, disabled, onFocus } = this.props;
     const { isOpen } = this.state;
 
     const { onChange, ...eventPropsWithoutOnChange } = eventProps;
@@ -306,7 +306,7 @@ export default class DatePicker extends PureComponent {
         )}
         data-testid={dataTestid}
         {...eventPropsWithoutOnChange}
-        onFocus={this.onFocus}
+        onFocus={onFocus}
         ref={this.wrapper}
       >
         {this.renderInputs()}
