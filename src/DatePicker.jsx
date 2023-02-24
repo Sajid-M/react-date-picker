@@ -84,7 +84,7 @@ export default class DatePicker extends PureComponent {
 
   onFocus = (event) => {
     const { disabled, onFocus, openCalendarOnFocus } = this.props;
-    console.log('on calendar focused');
+
     if (onFocus) {
       onFocus(event);
     }
@@ -166,6 +166,7 @@ export default class DatePicker extends PureComponent {
       value,
       yearAriaLabel,
       yearPlaceholder,
+      onFocus,
     } = this.props;
     const { isOpen } = this.state;
 
@@ -205,6 +206,7 @@ export default class DatePicker extends PureComponent {
           returnValue={returnValue}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
+          onFocus={onFocus}
         />
         {clearIcon !== null && (
           <button

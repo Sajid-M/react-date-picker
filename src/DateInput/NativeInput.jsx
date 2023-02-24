@@ -14,6 +14,7 @@ export default function NativeInput({
   required,
   value,
   valueType,
+  onFocus,
 }) {
   const nativeInputType = (() => {
     switch (valueType) {
@@ -44,9 +45,9 @@ export default function NativeInput({
     }
   })();
 
-  function stopPropagation(event) {
-    event.stopPropagation();
-  }
+  // function stopPropagation(event) {
+  //   event.stopPropagation();
+  // }
 
   return (
     <input
@@ -56,7 +57,12 @@ export default function NativeInput({
       min={minDate ? nativeValueParser(minDate) : null}
       name={name}
       onChange={onChange}
-      onFocus={stopPropagation}
+      onFocus={(event) => {
+        event.stopPropagation();
+        if (onFocus) {
+          onFocus(value ? nativeValueParser(value) : '');
+        }
+      }}
       required={required}
       style={{
         visibility: 'hidden',
@@ -79,4 +85,5 @@ NativeInput.propTypes = {
   required: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   valueType: isValueType,
+  onFocus: PropTypes.func,
 };
