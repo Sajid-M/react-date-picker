@@ -368,7 +368,8 @@ var DatePicker = /*#__PURE__*/function (_PureComponent) {
       var _this$props5 = this.props,
           className = _this$props5.className,
           dataTestid = _this$props5['data-testid'],
-          disabled = _this$props5.disabled;
+          disabled = _this$props5.disabled,
+          onFocus = _this$props5.onFocus;
       var isOpen = this.state.isOpen;
 
       var onChange = eventProps.onChange,

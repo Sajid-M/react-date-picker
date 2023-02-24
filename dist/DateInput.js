@@ -343,6 +343,7 @@ var DateInput = /*#__PURE__*/function (_PureComponent) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           onInvalidEntry = _this$props.onInvalidEntry;
+      console.log('on-invalid-entry', onInvalidEntry);
 
       if (!onChange) {
         return;
@@ -357,10 +358,12 @@ var DateInput = /*#__PURE__*/function (_PureComponent) {
       if (formElements.every(function (formElement) {
         return !formElement.value;
       })) {
+        console.log('on-invalid-entry forms-every');
         onChange(null, false);
       } else if (formElements.every(function (formElement) {
         return formElement.value && formElement.validity.valid;
       })) {
+        console.log('on-invalid-entry forms-every-else-if');
         var year = parseInt(values.year, 10) || new Date().getFullYear();
         var monthIndex = parseInt(values.month || 1, 10) - 1;
         var day = parseInt(values.day || 1, 10);
@@ -372,6 +375,7 @@ var DateInput = /*#__PURE__*/function (_PureComponent) {
 
         onChange(processedValue, false);
       } else if (onInvalidEntry) {
+        console.log('on-invalid-entry forms-every-oninvalid');
         onInvalidEntry();
       }
     });
